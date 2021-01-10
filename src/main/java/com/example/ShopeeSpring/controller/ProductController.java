@@ -17,7 +17,6 @@ public class ProductController {
 
     @GetMapping("/find-by-id")
     public ResponseEntity<ResponseForm<Product>> getById(@RequestParam String productId) {
-        //return productService.findById(productId);
         Product product = productService.findById(productId);
         return ResponseEntity.ok(ResponseForm.responseOk(product,1,"Success"));
     }
@@ -26,10 +25,5 @@ public class ProductController {
     public ResponseEntity<ResponseForm<List<Product>>> getAll() {
         List<Product> listProduct = productService.getAll();
         return ResponseEntity.ok(ResponseForm.responseOk(listProduct,1,"Success"));
-    }
-
-    @PostMapping("/create-product")
-    public boolean createProduct(@RequestParam String productId, @RequestParam String display, @RequestParam String description, @RequestParam int amount, @RequestParam int shipDay, @RequestParam double priceOut, @RequestParam double priceIn, @RequestParam double priceSale, @RequestParam String imageUrl) {
-        return productService.createProduct(productId, display, description, amount, shipDay, priceOut, priceIn, priceSale, imageUrl);
     }
 }

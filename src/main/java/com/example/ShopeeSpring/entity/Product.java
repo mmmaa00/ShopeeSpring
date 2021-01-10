@@ -10,22 +10,26 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product {
-    public String productId;
+    public String productID;
     public String display;
-    public String description;
+    public int priceIn;
+    public int priceOut;
+    public int priceSale;
     public int amount;
-    public int shipDay;
-    public double priceOut;
-    public double priceIn;
-    public double priceSale;
-    public String imageUrl;
+    public int shipday;
+    public String description;
+    public String images;
+    public int deleted;
+    public String create_at;
+    public String update_at;
 
-    public String getProductId() {
-        return productId;
+
+    public String getProductID() {
+        return productID;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setProductID(String productID) {
+        this.productID = productID;
     }
 
     public String getDisplay() {
@@ -36,12 +40,28 @@ public class Product {
         this.display = display;
     }
 
-    public String getDescription() {
-        return description;
+    public int getPriceIn() {
+        return priceIn;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPriceIn(int priceIn) {
+        this.priceIn = priceIn;
+    }
+
+    public int getPriceOut() {
+        return priceOut;
+    }
+
+    public void setPriceOut(int priceOut) {
+        this.priceOut = priceOut;
+    }
+
+    public int getPriceSale() {
+        return priceSale;
+    }
+
+    public void setPriceSale(int priceSale) {
+        this.priceSale = priceSale;
     }
 
     public int getAmount() {
@@ -52,43 +72,51 @@ public class Product {
         this.amount = amount;
     }
 
-    public int getShipDay() {
-        return shipDay;
+    public int getShipday() {
+        return shipday;
     }
 
-    public void setShipDay(int shipDay) {
-        this.shipDay = shipDay;
+    public void setShipday(int shipday) {
+        this.shipday = shipday;
     }
 
-    public double getPriceOut() {
-        return priceOut;
+    public String getDescription() {
+        return description;
     }
 
-    public void setPriceOut(double priceOut) {
-        this.priceOut = priceOut;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public double getPriceIn() {
-        return priceIn;
+    public String getImages() {
+        return images;
     }
 
-    public void setPriceIn(double priceIn) {
-        this.priceIn = priceIn;
+    public void setImages(String images) {
+        this.images = images;
     }
 
-    public double getPriceSale() {
-        return priceSale;
+    public int getDeleted() {
+        return deleted;
     }
 
-    public void setPriceSale(double priceSale) {
-        this.priceSale = priceSale;
+    public void setDeleted(int deleted) {
+        this.deleted = deleted;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getCreate_at() {
+        return create_at;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setCreate_at(String create_at) {
+        this.create_at = create_at;
+    }
+
+    public String getUpdate_at() {
+        return update_at;
+    }
+
+    public void setUpdate_at(String update_at) {
+        this.update_at = update_at;
     }
 }

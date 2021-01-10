@@ -19,8 +19,4 @@ public class ProductService {
     public List<Product> getAll() {
         return productRepository.getAll();
     }
-
-    public boolean createProduct(String productId, String display, String description, int amount, int shipDay, double priceOut, double priceIn, double priceSale, String imageUrl) {
-        return productRepository.createProduct(productId, display, description, amount, shipDay, priceOut, priceIn, priceSale, imageUrl);
-    }
 }

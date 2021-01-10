@@ -15,7 +15,7 @@ public class ProductRepository {
 
     public Product findById(String productId) {
         try {
-            String sql = "select * from product where productId = ?;";
+            String sql = "select * from Product where productID = ?;";
             Object[] params = {productId};
             Product product = (Product) jdbcTemplate.queryForObject(sql, new ProductMapper(), params);
             return product;
@@ -26,21 +26,12 @@ public class ProductRepository {
 
     public List<Product> getAll() {
         try {
-            String sql = "select * from product ;";
+            String sql = "select * from Product ;";
             List<Product> listProduct = jdbcTemplate.query(sql, new ProductMapper());
             return listProduct;
         } catch (Exception e) {
+            System.out.println(e);
             return null;
-        }
-    }
-
-    public boolean createProduct(String productId, String display, String description, int amount, int shipDay, double priceOut, double priceIn, double priceSale, String imageUrl) {
-        try {
-            String sql = "insert into product(productId, display, description, amount, shipDay, priceOut, priceIn, priceSale, imageUrl) values (?,?,?,?,?,?,?,?,?);";
-            jdbcTemplate.update(sql, productId, display, description, amount, shipDay, priceOut, priceIn, priceSale, imageUrl);
-            return true;
-        } catch (Exception e) {
-            return false;
         }
     }
 }
