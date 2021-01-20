@@ -13,10 +13,56 @@ public class ProductService {
     ProductRepository productRepository;
 
     public Product findById(String productId) {
-        return productRepository.findById(productId);
+        try{
+            return productRepository.findById(productId);
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    public List<Product> getAll(String sortColumn, int choice) {
+        try{
+            return productRepository.getAll(sortColumn,choice);
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
     }
 
     public List<Product> getAll() {
-        return productRepository.getAll();
+        try{
+            return productRepository.getAll();
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    public Integer updateById(Product product) {
+        try{
+            return productRepository.updateById(product);
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    public Integer deleteById(String productId) {
+        try{
+            return productRepository.deletedById(productId);
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    public  Integer addProduct(Product product) {
+        try{
+            return productRepository.addProduct(product);
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
     }
 }

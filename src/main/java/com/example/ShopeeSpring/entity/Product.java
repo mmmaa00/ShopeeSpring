@@ -23,7 +23,6 @@ public class Product {
     public String create_at;
     public String update_at;
 
-
     public String getProductID() {
         return productID;
     }
