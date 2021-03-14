@@ -21,41 +21,66 @@ public class ProductRepository {
         return product;
     }
 
-    public List<Product> getAll(String sortColumn,int choice) {
-        if(choice == 0) { //desc: giảm dần
-            String sql = "select * from Product where deleted = 0 order by " + sortColumn + " desc ;";
-            List<Product> listProduct = jdbcTemplate.query(sql, new ProductMapper());
-            return listProduct;
-        } else if(choice == 1) { //asc: tăng dần
-            String sql = "select * from Product where deleted = 0 order by " + sortColumn + " asc ;";
-            List<Product> listProduct = jdbcTemplate.query(sql, new ProductMapper());
-            return listProduct;
-        } else {
-            return null;
-        }
+    public List<Product> getAll_DESC(String sortColumn) {
+        String sql = "select * from Product where deleted = 0 order by " + sortColumn + " desc ;";
+        List<Product> listProduct = jdbcTemplate.query(sql, new ProductMapper());
+        return listProduct;
+    }
+
+    public List<Product> getAll_ASC(String sortColumn) {
+        String sql = "select * from Product where deleted = 0 order by " + sortColumn + " asc ;";
+        List<Product> listProduct = jdbcTemplate.query(sql, new ProductMapper());
+        return listProduct;
     }
 
     public List<Product> getAll() {
-        String sql = "select * from Product where deleted = 0;";
+        String sql = "select * from Product where deleted = 0 ;";
         List<Product> listProduct = jdbcTemplate.query(sql, new ProductMapper());
         return listProduct;
-
     }
 
     public Integer updateById(Product product) {
-        String sql = "update Product set display =? , priceIn =? , priceOut =?, priceSale =?, amount =?, shipday =?, description =?, images =?, update_at =? where and productID = ?;";
-        return jdbcTemplate.update(sql, product.getDisplay(), product.getPriceIn(), product.getPriceOut(), product.getPriceSale(), product.getAmount(), product.getShipday(), product.getDescription(), product.getImages(), product.getUpdate_at(), product.getProductID());
+        String sql = "UPDATE Product SET " +
+                " display =?," +
+                " priceIn =?," +
+                " priceOut =?," +
+                " priceSale =?," +
+                " amount =?," +
+                " shipday =?," +
+                " description =?," +
+                " images =? " +
+                " WHERE productID =? and deleted = 0;";
+        Object params[] = new Object[9];
+        params[0] = product.getDisplay();
+        params[1] = product.getPriceIn();
+        params[2] = product.getPriceOut();
+        params[3] = product.getPriceSale();
+        params[4] = product.getAmount();
+        params[5] = product.getShipday();
+        params[6] = product.getDescription();
+        params[7] = product.getImages();
+        params[8] = product.getProductID();
+        return jdbcTemplate.update(sql, params);
     }
 
-    public  Integer deletedById(String productId) {
-        String sql = "update from Product set deleted = 1 where productID = ?;";
+    public Integer deleteById(String productId) {
+        String sql = "UPDATE Product SET deleted = 1 WHERE productID =?;";
         Object[] params = {productId};
         return jdbcTemplate.update(sql, params);
     }
 
     public Integer addProduct(Product product) {
-        String sql = "insert into Product (productID, display, priceIn, priceOut, priceSale, amount, shipday, description, images) values (?,?,?,?,?,?,?,?,?);";
-        Object[] params = {UUID.randomUUID().toString(), product.getDisplay(), product.getPriceIn(), product.getPriceOut(), product.getPriceSale(), product.getAmount(), product.getShipday(), product.getDescription(), product.getImages()};
+        String sql = "INSERT INTO Product (productID,display,priceIn,priceOut,priceSale,amount,shipday,description,images) VALUES (?,?,?,?,?,?,?,?,?) ;";
+        Object params[] = new Object[9];
+        params[0] = UUID.randomUUID().toString();
+        params[1] = product.getDisplay();
+        params[2] = product.getPriceIn();
+        params[3] = product.getPriceOut();
+        params[4] = product.getPriceSale();
+        params[5] = product.getAmount();
+        params[6] = product.getShipday();
+        params[7] = product.getDescription();
+        params[8] = product.getImages();
         return jdbcTemplate.update(sql, params);
     }
 }

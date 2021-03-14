@@ -9,11 +9,15 @@ import org.springframework.web.context.request.WebRequest;
 
 @RestControllerAdvice
 public class ApiExceptionHandler {
-    //MissingServletRequestParameterException
-
     @ExceptionHandler(MissingServletRequestParameterException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public String invalidInputException(Exception e, WebRequest request) {
         return "Thiếu input đầu vào";
+    }
+
+    @ExceptionHandler(ApiException.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    public String apiException(Exception e, WebRequest request) {
+        return e.getMessage();
     }
 }

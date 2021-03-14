@@ -12,30 +12,23 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
-    public Product findById(String productId) {
+    public Product findById(String productID) {
         try{
-            return productRepository.findById(productId);
+            return productRepository.findById(productID);
         } catch (Exception e) {
             System.out.println(e);
             return null;
         }
     }
 
-    public List<Product> getAll(String sortColumn, int choice) {
-        try{
-            return productRepository.getAll(sortColumn,choice);
-        } catch (Exception e) {
-            System.out.println(e);
-            return null;
-        }
-    }
-
-    public List<Product> getAll() {
-        try{
-            return productRepository.getAll();
-        } catch (Exception e) {
-            System.out.println(e);
-            return null;
+    public List<Product> getAll(String sortColumn, String sortType) {
+        switch (sortType) {
+            case "asc":
+                return productRepository.getAll_ASC(sortColumn);
+            case "desc":
+                return productRepository.getAll_DESC(sortColumn);
+            default:
+                return productRepository.getAll();
         }
     }
 
@@ -48,16 +41,16 @@ public class ProductService {
         }
     }
 
-    public Integer deleteById(String productId) {
+    public Integer deleteById(String productID) {
         try{
-            return productRepository.deletedById(productId);
+            return productRepository.deleteById(productID);
         } catch (Exception e) {
             System.out.println(e);
             return null;
         }
     }
 
-    public  Integer addProduct(Product product) {
+    public Integer addProduct(Product product) {
         try{
             return productRepository.addProduct(product);
         } catch (Exception e) {
@@ -65,4 +58,5 @@ public class ProductService {
             return null;
         }
     }
+
 }

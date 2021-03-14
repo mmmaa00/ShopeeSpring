@@ -15,7 +15,7 @@ public class ResponseForm<T> {
     String message;
     T data;
 
-    public  static <T>ResponseForm<T>responseOk(T data,int code,String message){
+    public static <T>ResponseForm<T>responseOk(T data,int code,String message){
         ResponseForm<T> responseForm = new ResponseForm<T>();
         responseForm.data=data;
         responseForm.code=code;
